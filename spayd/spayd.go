@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/dundee/qrpay/base"
+	"github.com/tuhochi/qrpay/base"
 )
 
 const SpaydHeader = "SPD*1.0*"

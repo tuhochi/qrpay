@@ -4,22 +4,33 @@ import (
 	"fmt"
 	"time"
 
-	payment "github.com/dundee/qrpay"
+	payment "github.com/tuhochi/qrpay"
 )
 
 func main() {
-	p := payment.NewSpaydPayment()
+	spaydPayment := payment.NewSpaydPayment()
+	spaydPayment.SetIBAN("CZ5855000000001265098001")
+	spaydPayment.SetAmount("100")
+	spaydPayment.SetDate(time.Date(2021, 12, 24, 0, 0, 0, 0, time.UTC))
+	spaydPayment.SetMessage("M")
+	spaydPayment.SetRecipientName("go")
+	spaydPayment.SetNofificationType('E')
+	spaydPayment.SetNotificationValue("daniel@milde.cz")
+	spaydPayment.SetExtendedAttribute("vs", "1234567890")
 
-	p.SetIBAN("CZ5855000000001265098001")
-	p.SetAmount("100")
-	p.SetDate(time.Date(2021, 12, 24, 0, 0, 0, 0, time.UTC))
-	p.SetMessage("M")
-	p.SetRecipientName("go")
-	p.SetNofificationType('E')
-	p.SetNotificationValue("daniel@milde.cz")
-	p.SetExtendedAttribute("vs", "1234567890")
+	if err := payment.SaveQRCodeImageToFile(spaydPayment, "qr-spaydPayment.png"); err != nil {
+		fmt.Printf("could not generate payment QR code: %v", err)
+	}
 
-	if err := payment.SaveQRCodeImageToFile(p, "qr-payment.png"); err != nil {
+	epcPayment := payment.NewEpcPayment()
+	epcPayment.SetRecipientName("Franz Mustermänn")
+	epcPayment.SetIBAN("DE71110220330123456789")
+	epcPayment.SetBIC("BHBLDEHHXXX")
+	epcPayment.SetCurrency("EUR")
+	epcPayment.SetAmountCent(1080)
+	epcPayment.SetSenderReference("blablablubb ddfdf dfdf")
+
+	if err := payment.SaveQRCodeImageToFile(epcPayment, "qr-epcPayment.png"); err != nil {
 		fmt.Printf("could not generate payment QR code: %v", err)
 	}
 

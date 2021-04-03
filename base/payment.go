@@ -1,19 +1,21 @@
 package base
 
 import (
+	"fmt"
 	"github.com/jbub/banking/iban"
 	"github.com/jbub/banking/swift"
 )
 
 type Payment struct {
-	IBAN      string
-	BIC       string
-	Amount    string
-	Currency  string
-	Reference string
-	Recipient string
-	Msg       string
-	Errors    map[string]error
+	IBAN                  string
+	BIC                   string
+	Amount                string
+	Currency              string
+	Reference             string
+	RemittanceInformation string
+	Recipient             string
+	Msg                   string
+	Errors                map[string]error
 }
 
 func NewPayment() *Payment {
@@ -47,6 +49,11 @@ func (p *Payment) SetAmount(value string) error {
 	return nil
 }
 
+func (p *Payment) SetAmountCent(value int) error {
+	p.Amount = fmt.Sprintf("%.2f", float64(value)/100)
+	return nil
+}
+
 func (p *Payment) SetCurrency(value string) error {
 	p.Currency = value
 	return nil
@@ -54,6 +61,11 @@ func (p *Payment) SetCurrency(value string) error {
 
 func (p *Payment) SetSenderReference(value string) error {
 	p.Reference = value
+	return nil
+}
+
+func (p *Payment) SetSenderRemittanceInformation(value string) error {
+	p.RemittanceInformation = value
 	return nil
 }
 

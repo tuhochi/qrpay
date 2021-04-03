@@ -4,7 +4,7 @@ import (
 	"errors"
 	"strings"
 
-	"github.com/dundee/qrpay/base"
+	"github.com/tuhochi/qrpay/base"
 )
 
 const EpcHeader = `BCD
@@ -60,9 +60,15 @@ func (p *EpcPayment) GenerateString() (string, error) {
 	res.WriteString("\n")
 
 	if p.Reference != "" {
-		res.WriteString(base.TrimToLength(p.Reference, 4))
+		res.WriteString(base.TrimToLength(p.Reference, 35))
 	}
-	res.WriteString("\n\n")
+	res.WriteString("\n")
+
+	if p.RemittanceInformation != "" {
+		res.WriteString(base.TrimToLength(p.RemittanceInformation, 140))
+	}
+
+	res.WriteString("\n")
 
 	if p.Msg != "" {
 		res.WriteString(base.TrimToLength(p.Msg, 70))

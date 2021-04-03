@@ -4,8 +4,8 @@ import (
 	"os"
 	"testing"
 
-	"github.com/dundee/qrpay"
 	"github.com/stretchr/testify/assert"
+	"github.com/tuhochi/qrpay"
 )
 
 func TestGetQRCodeImage(t *testing.T) {

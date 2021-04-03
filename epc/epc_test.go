@@ -3,8 +3,8 @@ package epc_test
 import (
 	"testing"
 
-	"github.com/dundee/qrpay/epc"
 	"github.com/stretchr/testify/assert"
+	"github.com/tuhochi/qrpay/epc"
 )
 
 func TestSettingLongIBAN(t *testing.T) {
@@ -38,6 +38,19 @@ func TestDEPayment(t *testing.T) {
 
 	s, _ := p.GenerateString()
 	assert.Equal(t, "BCD\n002\n1\nSCT\nBHBLDEHHXXX\nFranz Mustermänn\nDE71110220330123456789\n10.8", s)
+}
+
+func TestReferencePayment(t *testing.T) {
+	p := epc.NewEpcPayment()
+	p.SetRecipientName("Franz Mustermänn")
+	p.SetIBAN("DE71110220330123456789")
+	p.SetBIC("BHBLDEHHXXX")
+	p.SetCurrency("EUR")
+	p.SetAmountCent(1080)
+	p.SetSenderReference("blablablubb ddfdf dfdf")
+
+	s, _ := p.GenerateString()
+	assert.Equal(t, "BCD\n002\n1\nSCT\nBHBLDEHHXXX\nFranz Mustermänn\nDE71110220330123456789\n10.80\n\nblablablubb ddfdf dfdf", s)
 }
 
 func TestOtherParams(t *testing.T) {

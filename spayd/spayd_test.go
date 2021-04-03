@@ -5,8 +5,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/dundee/qrpay/spayd"
 	"github.com/stretchr/testify/assert"
+	"github.com/tuhochi/qrpay/spayd"
 )
 
 func TestSettingLongAcc(t *testing.T) {

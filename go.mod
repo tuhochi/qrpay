@@ -1,4 +1,4 @@
-module github.com/dundee/qrpay
+module github.com/tuhochi/qrpay
 
 go 1.16
 

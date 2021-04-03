@@ -5,7 +5,7 @@ Short Payment Descriptor format and EPC QR Code (SEPA) format is supported.
 
 - Generating QR code image for Short Payment Descriptor format
 
-	import "github.com/dundee/qrpay"
+	import "github.com/tuhochi/qrpay"
 
 	p := qrpay.NewSpaydPayment()
 	p.SetIBAN("CZ5855000000001265098001")
@@ -21,7 +21,7 @@ Short Payment Descriptor format and EPC QR Code (SEPA) format is supported.
 
 - Generating QR code image for EPC QR Code
 
-	import "github.com/dundee/qrpay"
+	import "github.com/tuhochi/qrpay"
 
 	p := qrpay.NewEpcPayment()
 	p.SetIBAN("CZ5855000000001265098001")
@@ -35,7 +35,7 @@ QR code image encoding uses https://github.com/skip2/go-qrcode
 
 - Getting QR code content for Short Payment Descriptor format
 
-	import "github.com/dundee/qrpay"
+	import "github.com/tuhochi/qrpay"
 
 	p := qrpay.NewSpaydPayment()
 	p.SetIBAN("CZ5855000000001265098001")
@@ -48,8 +48,8 @@ QR code image encoding uses https://github.com/skip2/go-qrcode
 package qrpay
 
 import (
-	"github.com/dundee/qrpay/epc"
-	"github.com/dundee/qrpay/spayd"
+	"github.com/tuhochi/qrpay/epc"
+	"github.com/tuhochi/qrpay/spayd"
 
 	qrcode "github.com/skip2/go-qrcode"
 )

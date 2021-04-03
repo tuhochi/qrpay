@@ -3,8 +3,8 @@ package base_test
 import (
 	"testing"
 
-	"github.com/dundee/qrpay/base"
 	"github.com/stretchr/testify/assert"
+	"github.com/tuhochi/qrpay/base"
 )
 
 func TestTrimToLength(t *testing.T) {
