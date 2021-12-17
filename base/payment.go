@@ -49,6 +49,12 @@ func (p *Payment) SetAmount(value string) error {
 	return nil
 }
 
+func (p *Payment) SetEurAmountCent(value int) error {
+	p.Currency = "EUR"
+	p.Amount = fmt.Sprintf("%.2f", float64(value)/100)
+	return nil
+}
+
 func (p *Payment) SetAmountCent(value int) error {
 	p.Amount = fmt.Sprintf("%.2f", float64(value)/100)
 	return nil

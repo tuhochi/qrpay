@@ -26,8 +26,7 @@ func main() {
 	epcPayment.SetRecipientName("Franz Mustermänn")
 	epcPayment.SetIBAN("DE71110220330123456789")
 	epcPayment.SetBIC("BHBLDEHHXXX")
-	epcPayment.SetCurrency("EUR")
-	epcPayment.SetAmountCent(1080)
+	epcPayment.SetEurAmountCent(1080)
 	epcPayment.SetSenderReference("blablablubb ddfdf dfdf")
 
 	if err := payment.SaveQRCodeImageToFile(epcPayment, "qr-epcPayment.png"); err != nil {
